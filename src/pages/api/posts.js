@@ -14,7 +14,13 @@ export default async function handler(req, res) {
 
       res.json({ post });
     } else {
-      const posts = await Post.find().populate("author").sort({ createdAt: -1 }).limit(20).exec();
+      // * uses the parent id if passed as params other wise null used in index page
+      const parent = req.query.parent || null;
+      const posts = await Post.find({ parent })
+        .populate("author")
+        .sort({ createdAt: -1 })
+        .limit(20)
+        .exec();
       // * get all the posts that are liked by me from the fetched 20 posts
       const postsLikedByMe = await Like.find({
         author: session?.user?.id,
@@ -26,11 +32,17 @@ export default async function handler(req, res) {
     }
   }
   if (req.method === "POST") {
-    const { text } = req.body;
+    const { text, parent } = req.body;
     const post = await Post.create({
       author: session.user.id,
       text,
+      parent,
     });
+    if (parent) {
+      const parentPost = await Post.findById(parent);
+      parentPost.commentCount = await Post.countDocuments({ parent });
+      await parentPost.save();
+    }
     res.json(post);
   }
 }

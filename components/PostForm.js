@@ -3,7 +3,7 @@ import { useState } from "react";
 import useUserInfo from "../hooks/useUserInfo";
 import Avatar from "./Avatar";
 
-const PostForm = ({ onPost, compact }) => {
+const PostForm = ({ onPost, compact, parent }) => {
   const { userInfo, userInfoStatus } = useUserInfo();
   const [text, setText] = useState("");
   if (userInfoStatus === "loading") {
@@ -11,7 +11,7 @@ const PostForm = ({ onPost, compact }) => {
   }
   const handlePostSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/api/posts", { text });
+    await axios.post("/api/posts", { text, parent });
     setText("");
     if (onPost) {
       onPost();
