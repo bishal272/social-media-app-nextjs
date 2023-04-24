@@ -1,8 +1,10 @@
 import axios from "axios";
+import Link from "next/link";
 import { useState } from "react";
 import FlipNumbers from "react-flip-numbers";
 
 export default function PostButtons({
+  username,
   id,
   commentCount,
   likeCount: likesCountDefault = 0,
@@ -22,7 +24,8 @@ export default function PostButtons({
   };
   return (
     <div className="flex justify-between mr-12 text-twitterLightGray text-sm mt-1">
-      <button className="flex">
+      <Link href={`/${username}/status/${id}`}></Link>
+      <div className="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -37,7 +40,7 @@ export default function PostButtons({
           />
         </svg>
         <span>{commentCount}</span>
-      </button>
+      </div>
       <button className="flex">
         <svg
           xmlns="http://www.w3.org/2000/svg"

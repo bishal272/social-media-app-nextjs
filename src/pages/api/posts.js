@@ -16,7 +16,9 @@ export default async function handler(req, res) {
     } else {
       // * uses the parent id if passed as params other wise null used in index page
       const parent = req.query.parent || null;
-      const posts = await Post.find({ parent })
+      const author = req.query.author;
+      const searchFilter = author ? { author } : { parent };
+      const posts = await Post.find(searchFilter)
         .populate("author")
         .sort({ createdAt: -1 })
         .limit(20)

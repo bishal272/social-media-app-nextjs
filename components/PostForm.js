@@ -27,7 +27,7 @@ const PostForm = ({ onPost, compact, parent }) => {
         <div className="grow pl-2">
           <textarea
             className={
-              (compact ? "h-10 mt-1" : "h-24") + " w-full p-2 bg-transparent text-twitterWhite"
+              (compact ? "h-10 mt-1" : "h-20") + " w-full p-2 bg-transparent text-twitterWhite"
             }
             placeholder={compact ? "Tweet Your Reply" : "What's Happening"}
             value={text}

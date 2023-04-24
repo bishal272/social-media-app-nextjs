@@ -5,6 +5,8 @@ const UserSchema = Schema({
   email: String,
   image: String,
   username: String,
+  cover: String,
+  bio: String,
 });
 
 // * if a user model is already present use that one otherwise create one

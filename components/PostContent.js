@@ -17,13 +17,21 @@ export default function PostContent({
     <div>
       <div className="flex w-full">
         <div className="">
-          <Avatar src={author.image} />
+          <Link href={"/" + author?.username}>
+            <div className="cursor-pointer">
+              <Avatar src={author.image} />
+            </div>
+          </Link>
         </div>
         <div className="pl-2 grow">
           <div className="">
-            <span className="font-bold pr-1">{author.name}</span>
+            <Link href={"/" + author?.username}>
+              <span className="font-bold pr-1">{author.name}</span>
+            </Link>
             {big && <br />}
-            <span className="text-twitterLightGray">@{author.username}</span>
+            <Link href={"/" + author?.username}>
+              <span className="text-twitterLightGray">@{author.username}</span>
+            </Link>
             <span className="pl-1 text-twitterLightGray">
               {!big && <ReactTimeAgo date={createdAt} timeStyle="twitter" />}
             </span>

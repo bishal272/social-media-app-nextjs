@@ -7,8 +7,8 @@ export default async function handle(req, res) {
   await initMongoose();
   const session = await getServerSession(req, res, authOptions);
   if (req.method === "GET") {
-    const id = req.query.id;
-    const user = await User.findById(id);
+    const { username, id } = req.query;
+    const user = id ? await User.findById(id) : await User.findOne({ username });
 
     res.json({ user });
   }
