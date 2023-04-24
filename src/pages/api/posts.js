@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { initMongoose } from "../../../lib/mongoose";
+import Like from "../../../models/Like";
 import Post from "../../../models/Post";
 import { authOptions } from "./auth/[...nextauth]";
 
@@ -13,8 +14,15 @@ export default async function handler(req, res) {
 
       res.json({ post });
     } else {
-      const posts = await Post.find().populate("author").sort({ createdAt: -1 }).exec();
-      res.json(posts);
+      const posts = await Post.find().populate("author").sort({ createdAt: -1 }).limit(20).exec();
+      // * get all the posts that are liked by me from the fetched 20 posts
+      const postsLikedByMe = await Like.find({
+        author: session?.user?.id,
+        post: posts.map((post) => post._id),
+      });
+      // * get all the post ids liked by me
+      const idsLikedByMe = postsLikedByMe.map((like) => like.post);
+      res.json({ posts, idsLikedByMe });
     }
   }
   if (req.method === "POST") {

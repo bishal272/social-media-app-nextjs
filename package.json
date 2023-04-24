@@ -19,6 +19,7 @@
     "next-auth": "^4.22.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-flip-numbers": "^3.0.8",
     "react-time-ago": "^7.2.1"
   },
   "devDependencies": {

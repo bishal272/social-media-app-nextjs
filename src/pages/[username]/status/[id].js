@@ -1,12 +1,15 @@
 import axios from "axios";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../../../components/Layout";
 import PostContent from "../../../../components/PostContent";
-import Link from "next/link";
+import useUserInfo from "../../../../hooks/useUserInfo";
+import PostForm from "../../../../components/PostForm";
 
 export default function PostPage() {
   const router = useRouter();
+  const { userInfo } = useUserInfo();
   const { id } = router.query;
   const [post, setPost] = useState();
   useEffect(() => {
@@ -41,6 +44,12 @@ export default function PostPage() {
           <PostContent {...post} big={true} />
         </div>
       )}
+      {!!userInfo && (
+        <div className="border-t border-twitterBorder py-5">
+          <PostForm onPost={() => {}} compact />
+        </div>
+      )}
+      <div className="border-t border-twitterBorder">reply</div>
     </Layout>
   );
 }

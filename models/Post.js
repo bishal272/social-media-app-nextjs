@@ -4,6 +4,8 @@ const PostSchema = new Schema(
   {
     author: { type: mongoose.Types.ObjectId, ref: "User" },
     text: String,
+    likeCount: { type: Number, default: 0 },
+    parent: { type: mongoose.Types.ObjectId, ref: "Post" },
   },
   {
     timestamps: true,

@@ -3,7 +3,15 @@ import ReactTimeAgo from "react-time-ago";
 import Avatar from "./Avatar";
 import PostButtons from "./PostButtons";
 
-export default function PostContent({ text, author, createdAt, _id, big = false }) {
+export default function PostContent({
+  text,
+  author,
+  createdAt,
+  _id,
+  likedByMe,
+  likeCount,
+  big = false,
+}) {
   return (
     <div>
       <div className="flex w-full">
@@ -24,7 +32,7 @@ export default function PostContent({ text, author, createdAt, _id, big = false 
               <Link href={`/${author.username}/status/${_id}`} className="">
                 {text}
               </Link>
-              <PostButtons />
+              <PostButtons id={_id} likeCount={likeCount} likedByMe={likedByMe} />
             </div>
           )}
         </div>
@@ -44,7 +52,7 @@ export default function PostContent({ text, author, createdAt, _id, big = false 
               .reverse()
               .join(" ")}
           </div>
-          <PostButtons />
+          <PostButtons id={_id} likeCount={likeCount} likedByMe={likedByMe} />
         </div>
       )}
     </div>
