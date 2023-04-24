@@ -4,6 +4,7 @@ import Avatar from "./Avatar";
 import PostButtons from "./PostButtons";
 
 export default function PostContent({
+  username,
   text,
   author,
   createdAt,
@@ -43,6 +44,7 @@ export default function PostContent({
               </Link>
               <PostButtons
                 id={_id}
+                username={author.username}
                 likeCount={likeCount}
                 likedByMe={likedByMe}
                 commentCount={commentCount}
@@ -68,6 +70,7 @@ export default function PostContent({
           </div>
           <PostButtons
             id={_id}
+            username={author.username}
             likeCount={likeCount}
             likedByMe={likedByMe}
             commentCount={commentCount}
