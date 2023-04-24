@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import PostContent from "../../components/PostContent";
 import PostForm from "../../components/PostForm";
 import UsernameForm from "../../components/UsernameForm";
 import useUserInfo from "../../hooks/useUserInfo";
@@ -30,7 +31,7 @@ export default function Home() {
         {posts.length > 0 &&
           posts.map((post, index) => (
             <div key={index} className="border-t border-twitterBorder p-5">
-              {post.text}
+              <PostContent {...post} />
             </div>
           ))}
       </div>

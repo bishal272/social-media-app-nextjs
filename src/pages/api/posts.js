@@ -7,7 +7,8 @@ export default async function handler(req, res) {
   await initMongoose();
   const session = await getServerSession(req, res, authOptions);
   if (req.method === "GET") {
-    res.json(await Post.find().sort({ createdAt: -1 }).exec());
+    const posts = await Post.find().populate("author").sort({ createdAt: -1 }).exec();
+    res.json(posts);
   }
   if (req.method === "POST") {
     const { text } = req.body;
