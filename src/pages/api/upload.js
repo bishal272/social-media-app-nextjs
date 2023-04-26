@@ -1,9 +1,14 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-
 import fs from "fs";
 import multiparty from "multiparty";
+import { getServerSession } from "next-auth";
+import { initMongoose } from "../../../lib/mongoose";
+import User from "../../../models/User";
+import { authOptions } from "./auth/[...nextauth]";
 const bucket = "social-media-app-merkasin";
 export default async function handler(req, res) {
+  await initMongoose();
+  const session = await getServerSession(req, res, authOptions);
   const Client = new S3Client({
     region: "ap-south-1",
     credentials: {
@@ -18,7 +23,8 @@ export default async function handler(req, res) {
     if (err) {
       throw err;
     }
-    const fileInfo = files["cover"][0];
+    const type = Object.keys(files)[0];
+    const fileInfo = files[type][0];
     // console.log(fileInfo);
     const filename = fileInfo.path.split("\\")[1];
     // console.log(filename);
@@ -31,7 +37,12 @@ export default async function handler(req, res) {
         ContentType: fileInfo.headers["content-type"],
       })
     );
-    res.json(`https://${bucket}.s3.amazonaws.com/${filename}`);
+    const coverUrl = `https://${bucket}.s3.amazonaws.com/${filename}`;
+    const user = await User.findByIdAndUpdate(session.user.id, {
+      [type]: coverUrl,
+    });
+    fs.unlinkSync(fileInfo.path);
+    res.json(coverUrl);
   });
 }
 
