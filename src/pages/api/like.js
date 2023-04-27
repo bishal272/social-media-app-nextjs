@@ -1,7 +1,7 @@
 import { getServerSession } from "next-auth";
 import { initMongoose } from "../../../lib/mongoose";
-import Like from "../../../public/models/Like";
-import Post from "../../../public/models/Post";
+import Like from "../../../models/Like";
+import Post from "../../../models/Post";
 import { authOptions } from "./auth/[...nextauth]";
 
 async function updateLikesCount(postId) {
