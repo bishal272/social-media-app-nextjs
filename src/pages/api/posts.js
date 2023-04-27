@@ -1,5 +1,6 @@
 import { getServerSession } from "next-auth";
 import { initMongoose } from "../../../lib/mongoose";
+import Follower from "../../../models/Follower";
 import Like from "../../../models/Like";
 import Post from "../../../models/Post";
 import { authOptions } from "./auth/[...nextauth]";
@@ -17,7 +18,19 @@ export default async function handler(req, res) {
       // * uses the parent id if passed as params other wise null used in index page
       const parent = req.query.parent || null;
       const author = req.query.author;
-      const searchFilter = author ? { author } : { parent };
+      let searchFilter;
+      if (!author && !parent) {
+        const myFollows = await Follower.find({ source: session.user.id }).exec();
+        const idsOfPeopleIFollow = myFollows.map((f) => f.destination);
+        searchFilter = { author: [...idsOfPeopleIFollow, session.user.id] };
+      }
+      if (author) {
+        searchFilter = { author };
+      }
+      if (parent) {
+        searchFilter = { parent };
+      }
+
       const posts = await Post.find(searchFilter)
         .populate("author")
         .sort({ createdAt: -1 })

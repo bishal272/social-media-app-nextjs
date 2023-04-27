@@ -46,7 +46,7 @@ export default function EditableImage({ type, src, onChange, className, editable
         setIsFileNearBy(false);
         setIsFileOver(false);
       }}>
-      <div className={"relative"}>
+      <div className={"relative bg-twitterBorder"}>
         <div className={"absolute inset-0" + extraClasses}></div>
         {isUploading && (
           <div
@@ -55,11 +55,10 @@ export default function EditableImage({ type, src, onChange, className, editable
             <RingLoader size={29} color="#fff" />
           </div>
         )}
-        {src && (
-          <div className={"flex items-center overflow-hidden " + className}>
-            <img src={src} alt="" className="w-full" />
-          </div>
-        )}
+
+        <div className={"cover flex items-center overflow-hidden " + className}>
+          {src && <img src={src} alt="" className="w-full" />}
+        </div>
       </div>
     </FileDrop>
   );

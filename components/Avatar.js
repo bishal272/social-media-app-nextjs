@@ -3,7 +3,7 @@ import EditableImage from "./EditableImage";
 export default function Avatar({ src, big, onChange, editable = false }) {
   const widthClass = big ? "w-24" : "w-12";
   return (
-    <div className="overflow-hidden">
+    <div className="overflow-hidden rounded-full">
       <EditableImage
         type={"image"}
         src={src}

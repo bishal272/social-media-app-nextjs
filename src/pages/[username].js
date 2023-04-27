@@ -17,6 +17,7 @@ export default function UserPage() {
   const [posts, setPosts] = useState([]);
   const [postsLikedByMe, setPostsLikedByMe] = useState([]);
   const [editMode, setEditMode] = useState(false);
+  const [isFollowing, setIsFollowing] = useState(false);
   useEffect(() => {
     if (!username) {
       return;
@@ -24,6 +25,7 @@ export default function UserPage() {
     axios.get("/api/users?username=" + username).then((response) => {
       setProfileInfo(response.data.user);
       setOriginalUserInfo(response.data.user);
+      setIsFollowing(!!response.data.follow);
     });
   }, [username]);
   useEffect(() => {
@@ -49,10 +51,24 @@ export default function UserPage() {
   };
   const updateProfile = async () => {
     const { bio, name, username } = profileInfo;
-    await axios.put("/api/profile", {});
+    const trimmedBio = bio.trim();
+    const trimmedName = name.trim();
+    const trimmedUsername = username.trim();
+
+    await axios.put("/api/profile", {
+      trimmedBio,
+      trimmedName,
+      trimmedUsername,
+    });
     setEditMode(false);
   };
 
+  const toggleFollow = async () => {
+    setIsFollowing((prev) => !prev);
+    await axios.post("/api/followers", {
+      destination: profileInfo?._id,
+    });
+  };
   return (
     <Layout>
       {!!profileInfo && (
@@ -62,7 +78,7 @@ export default function UserPage() {
           </div>
 
           <Cover
-            editable={true}
+            editable={isMyProfile}
             src={profileInfo.cover}
             onChange={(src) => {
               updateUserImage("cover", src);
@@ -74,14 +90,21 @@ export default function UserPage() {
                 <Avatar
                   big
                   src={profileInfo.image}
-                  editable={true}
+                  editable={isMyProfile}
                   onChange={(src) => updateUserImage("image", src)}
                 />
               </div>
             </div>
             <div className="p-2">
               {!isMyProfile && (
-                <button className="bg-twitterBlue py-2 px-5 rounded-full text-white">Follow</button>
+                <button
+                  className={
+                    (isFollowing ? "bg-twitterWhite text-black " : "bg-twitterBlue text-white ") +
+                    "py-2 px-5 rounded-full "
+                  }
+                  onClick={toggleFollow}>
+                  {isFollowing ? "Following" : "Follow"}
+                </button>
               )}
               {isMyProfile && (
                 <div>
