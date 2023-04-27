@@ -15,4 +15,4 @@ const PostSchema = new Schema(
 );
 
 const Post = models?.Post || model("Post", PostSchema);
-module.exports = Post;
+export default Post;
