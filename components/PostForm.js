@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import useUserInfo from "../hooks/useUserInfo";
 import Avatar from "./Avatar";
+import Upload from "./Upload";
 
 const PostForm = ({ onPost, compact, parent }) => {
   const { userInfo, userInfoStatus } = useUserInfo();
@@ -25,14 +26,16 @@ const PostForm = ({ onPost, compact, parent }) => {
           <Avatar src={userInfo?.image} />
         </div>
         <div className="grow pl-2">
-          <textarea
-            className={
-              (compact ? "h-10 mt-1" : "h-20") + " w-full p-2 bg-transparent text-twitterWhite"
-            }
-            placeholder={compact ? "Tweet Your Reply" : "What's Happening"}
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
+          <Upload>
+            <textarea
+              className={
+                (compact ? "h-10 mt-1" : "h-20") + " w-full p-2 bg-transparent text-twitterWhite"
+              }
+              placeholder={compact ? "Tweet Your Reply" : "What's Happening"}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+          </Upload>
           {!compact && (
             <div className="text-right border-t border-twitterBorder pt-2 pb-2 ">
               <button className="bg-twitterBlue text-white px-5 py-1 rounded-full">Tweet</button>
