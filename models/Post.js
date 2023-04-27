@@ -1,5 +1,5 @@
-import mongoose, { Schema, model, models } from "mongoose";
-
+const { Schema, model, models } = require("mongoose");
+const mongoose = require("mongoose");
 const PostSchema = new Schema(
   {
     author: { type: mongoose.Types.ObjectId, ref: "User" },

@@ -1,4 +1,5 @@
-import mongoose, { Schema, model, models } from "mongoose";
+const { Schema, model, models } = require("mongoose");
+const mongoose = require("mongoose");
 
 const LikeSchema = new Schema(
   {
