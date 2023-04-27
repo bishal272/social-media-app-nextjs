@@ -1,5 +1,8 @@
 {
   "functions": {
-    "models/**/*": {}
+    "models/User.js": {},
+    "models/Post.js": {},
+    "models/Like.js": {},
+    "models/Follower.js": {}
   }
 }
