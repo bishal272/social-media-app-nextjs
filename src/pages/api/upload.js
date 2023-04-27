@@ -38,9 +38,11 @@ export default async function handler(req, res) {
       })
     );
     const coverUrl = `https://${bucket}.s3.amazonaws.com/${filename}`;
-    const user = await User.findByIdAndUpdate(session.user.id, {
-      [type]: coverUrl,
-    });
+    if (type === "cover" || type === "image") {
+      await User.findByIdAndUpdate(session.user.id, {
+        [type]: coverUrl,
+      });
+    }
     fs.unlinkSync(fileInfo.path);
     res.json(coverUrl);
   });

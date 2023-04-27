@@ -7,6 +7,7 @@ const PostSchema = new Schema(
     likeCount: { type: Number, default: 0 },
     commentCount: { type: Number, default: 0 },
     parent: { type: mongoose.Types.ObjectId, ref: "Post" },
+    images: { type: [String] },
   },
   {
     timestamps: true,
