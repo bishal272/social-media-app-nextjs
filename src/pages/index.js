@@ -13,7 +13,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
   const [idsLikedByMe, setIdsLikedByMe] = useState([]);
   const router = useRouter();
-  const fetchAllPosts = () => {
+  const fetchAllPosts = async () => {
     axios.get("/api/posts").then((response) => {
       setPosts(response.data.posts);
       setIdsLikedByMe(response.data.idsLikedByMe);
