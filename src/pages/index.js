@@ -1,12 +1,12 @@
 import axios from "axios";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import PostContent from "../../components/PostContent";
 import PostForm from "../../components/PostForm";
 import UsernameForm from "../../components/UsernameForm";
 import useUserInfo from "../../hooks/useUserInfo";
-import { useRouter } from "next/router";
-import { signOut } from "next-auth/react";
 
 export default function Home() {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
@@ -44,6 +44,14 @@ export default function Home() {
         {posts.length > 0 &&
           posts.map((post, index) => (
             <div key={index} className="border-t border-twitterBorder p-5">
+              {post.parent && (
+                <div>
+                  <PostContent {...post.parent} />
+                  <div className="relative h-8">
+                    <div className="h-10 border-l-2  border-twitterBorder absolute ml-6 -top-4"></div>
+                  </div>
+                </div>
+              )}
               <PostContent {...post} likedByMe={idsLikedByMe.includes(post._id)} />
             </div>
           ))}

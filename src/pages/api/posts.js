@@ -11,7 +11,9 @@ export default async function handler(req, res) {
   if (req.method === "GET") {
     const { id } = req.query;
     if (id) {
-      const post = await Post.findById(id).populate("author");
+      const post = await Post.findById(id)
+        .populate("author")
+        .populate({ path: "parent", populate: "author" });
 
       res.json({ post });
     } else {
@@ -33,6 +35,7 @@ export default async function handler(req, res) {
 
       const posts = await Post.find(searchFilter)
         .populate("author")
+        .populate({ path: "parent", populate: "author" })
         .sort({ createdAt: -1 })
         .limit(20)
         .exec();
