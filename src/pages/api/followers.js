@@ -1,6 +1,6 @@
 import { getServerSession } from "next-auth";
 import { initMongoose } from "../../../lib/mongoose";
-import Follower from "../../../models/Follower";
+import Follower from "../../../public/models/Follower";
 import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handler(req, res) {

@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node ./models/Post && node ./models/User && node ./models/Like && node ./models/Follower",
     "dev": "next dev",
-    "build": "next build",
+    "build": "node ./models/Post && node ./models/User && node ./models/Like && node ./models/Follower && next build",
     "start": "next start",
     "lint": "next lint"
   },

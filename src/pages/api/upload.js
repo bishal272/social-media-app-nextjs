@@ -3,7 +3,7 @@ import fs from "fs";
 import multiparty from "multiparty";
 import { getServerSession } from "next-auth";
 import { initMongoose } from "../../../lib/mongoose";
-import User from "../../../models/User";
+import User from "../../../public/models/User";
 import { authOptions } from "./auth/[...nextauth]";
 const bucket = "social-media-app-merkasin";
 export default async function handler(req, res) {
