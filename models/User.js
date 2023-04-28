@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 const UserSchema = Schema({
   name: String,
   email: String,
@@ -9,6 +9,6 @@ const UserSchema = Schema({
 });
 
 // * if a user model is already present use that one otherwise create one
-const User = model("User") || model("User", UserSchema);
+const User = models?.User || model("User", UserSchema);
 
 export default User;

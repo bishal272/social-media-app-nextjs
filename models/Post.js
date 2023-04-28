@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 const PostSchema = new Schema(
   {
     author: { type: mongoose.Types.ObjectId, ref: "User" },
@@ -13,5 +13,5 @@ const PostSchema = new Schema(
   }
 );
 
-const Post = model("Post") || model("Post", PostSchema);
+const Post = models?.Post || model("Post", PostSchema);
 export default Post;
