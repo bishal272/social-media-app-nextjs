@@ -1,5 +1,4 @@
-const { Schema, model, models } = require("mongoose");
-const mongoose = require("mongoose");
+import mongoose, { Schema, model } from "mongoose";
 
 const LikeSchema = new Schema(
   {
@@ -8,5 +7,5 @@ const LikeSchema = new Schema(
   },
   { timestamps: true }
 );
-const Like = models?.Like || model("Like", LikeSchema);
+const Like = model("Like") || model("Like", LikeSchema);
 export default Like;
