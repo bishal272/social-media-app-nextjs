@@ -24,8 +24,11 @@ export default function Home() {
     await signOut();
   };
   useEffect(() => {
+    if (!userInfo) {
+      return;
+    }
     fetchAllPosts();
-  }, []);
+  }, [userInfo]);
   if (userInfoStatus === "loading") {
     return "loading user info..";
   }
