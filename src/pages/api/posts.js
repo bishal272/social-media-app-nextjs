@@ -4,6 +4,7 @@ import Follower from "../../../models/Follower";
 import Like from "../../../models/Like";
 import Post from "../../../models/Post";
 import { authOptions } from "./auth/[...nextauth]";
+var User = require("../../../models/User");
 
 export default async function handler(req, res) {
   await initMongoose();
