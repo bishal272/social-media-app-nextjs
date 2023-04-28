@@ -4,6 +4,7 @@ import Follower from "../../../models/Follower";
 import Like from "../../../models/Like";
 import Post from "../../../models/Post";
 import { authOptions } from "./auth/[...nextauth]";
+//needed to add user variable so that it can get hold of the user model before the schema is created for populate
 var User = require("../../../models/User");
 
 export default async function handler(req, res) {
