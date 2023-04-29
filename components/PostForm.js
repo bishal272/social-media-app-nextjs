@@ -44,8 +44,8 @@ const PostForm = ({ onPost, compact, parent }) => {
                 />
                 <div className="flex -mx-2">
                   {images.length > 0 &&
-                    images.map((image, index) => (
-                      <div key={index} className="h-24 m-2">
+                    images.map((image) => (
+                      <div key={image} className="h-24 m-2">
                         <img src={image} alt="" className="h-24" />
                       </div>
                     ))}

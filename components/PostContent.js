@@ -4,7 +4,6 @@ import Avatar from "./Avatar";
 import PostButtons from "./PostButtons";
 
 export default function PostContent({
-  username,
   text,
   author,
   createdAt,
@@ -22,8 +21,8 @@ export default function PostContent({
     return (
       <div className="flex -mx-1">
         {images.length > 0 &&
-          images.map((img, index) => (
-            <div className="m-1" key={index}>
+          images.map((img) => (
+            <div className="m-1" key={img}>
               <img src={img} alt="" />
             </div>
           ))}
@@ -36,26 +35,26 @@ export default function PostContent({
         <div className="">
           <Link href={"/" + author?.username}>
             <div className="cursor-pointer">
-              <Avatar src={author.image} />
+              <Avatar src={author?.image} />
             </div>
           </Link>
         </div>
         <div className="pl-2 grow">
           <div className="">
             <Link href={"/" + author?.username}>
-              <span className="font-bold pr-1">{author.name}</span>
+              <span className="font-bold pr-1">{author?.name}</span>
             </Link>
             {big && <br />}
             <Link href={"/" + author?.username}>
-              <span className="text-twitterLightGray">@{author.username}</span>
+              <span className="text-twitterLightGray">@{author?.username}</span>
             </Link>
             <span className="pl-1 text-twitterLightGray">
-              {!big && <ReactTimeAgo date={createdAt} timeStyle="twitter" />}
+              {createdAt && !big && <ReactTimeAgo date={createdAt} timeStyle="twitter" />}
             </span>
           </div>
           {!big && (
             <div>
-              <Link href={`/${author.username}/status/${_id}`} className="">
+              <Link href={`/${author?.username}/status/${_id}`} className="">
                 <div className="w-full cursor-pointer">
                   {text}
                   {showImages()}
@@ -63,7 +62,7 @@ export default function PostContent({
               </Link>
               <PostButtons
                 id={_id}
-                username={author.username}
+                username={author?.username}
                 likeCount={likeCount}
                 likedByMe={likedByMe}
                 commentCount={commentCount}
@@ -75,7 +74,7 @@ export default function PostContent({
 
       {big && (
         <div className="mt-2">
-          <Link href={`/${author.username}/status/${_id}`} className="">
+          <Link href={`/${author?.username}/status/${_id}`} className="">
             <div>
               {text}
               {showImages()}
@@ -92,7 +91,7 @@ export default function PostContent({
           </div>
           <PostButtons
             id={_id}
-            username={author.username}
+            username={author?.username}
             likeCount={likeCount}
             likedByMe={likedByMe}
             commentCount={commentCount}

@@ -1,12 +1,11 @@
 import axios from "axios";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Layout from "../../../../components/Layout";
 import PostContent from "../../../../components/PostContent";
 import PostForm from "../../../../components/PostForm";
-import useUserInfo from "../../../../hooks/useUserInfo";
 import TopNavLink from "../../../../components/TopNavLink";
+import useUserInfo from "../../../../hooks/useUserInfo";
 
 export default function PostPage() {
   const router = useRouter();
@@ -31,7 +30,7 @@ export default function PostPage() {
   }, [id]);
   return (
     <Layout>
-      {post && (
+      {!!post?._id && (
         <div className="px-5 py-2">
           <TopNavLink />
           {post.parent && (
@@ -56,8 +55,8 @@ export default function PostPage() {
       )}
       <div className="">
         {replies.length > 0 &&
-          replies.map((reply, index) => (
-            <div className="p-5 border-t border-twitterBorder" key={index}>
+          replies.map((reply) => (
+            <div className="p-5 border-t border-twitterBorder" key={reply._id}>
               <PostContent {...reply} likedByMe={repliesLikedByMe.includes(reply._id)} />
             </div>
           ))}

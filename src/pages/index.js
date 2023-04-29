@@ -42,11 +42,15 @@ export default function Home() {
   return (
     <Layout>
       <h1 className="text-lg font-bold p-4">Home</h1>
-      <PostForm onPost={() => fetchAllPosts()} />
+      <PostForm
+        onPost={() => {
+          fetchAllPosts();
+        }}
+      />
       <div className="">
         {posts.length > 0 &&
-          posts.map((post, index) => (
-            <div key={index} className="border-t border-twitterBorder p-5">
+          posts.map((post) => (
+            <div key={post._id} className="border-t border-twitterBorder p-5">
               {post.parent && (
                 <div>
                   <PostContent {...post.parent} />

@@ -33,8 +33,8 @@ const LoginPage = ({ providers }) => {
   console.log({ data, status });
   return (
     <div className="flex items-center justify-center h-screen">
-      {Object.values(providers).map((provider, index) => (
-        <div key={index}>
+      {Object.values(providers).map((provider) => (
+        <div key={provider.id}>
           <button
             onClick={async () => {
               await signIn(provider.id);
