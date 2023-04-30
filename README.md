@@ -1,38 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Full Stack Social Media App - MERN Stack, Next.js, Next Auth, AWS S3
 
-## Getting Started
+## Description
 
-First, run the development server:
+This is a full-stack social media application built using the MERN (MongoDB, Express, React, Node.js) stack, Next.js, Next Auth, and AWS S3. The application allows users to share their thoughts, images, and experiences with others in a social network setting. It includes features such as user authentication, image uploading, and news feed.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+The application is built with modern web development technologies and follows best practices for scalability, security, and performance. It utilizes the power of Next.js for server-side rendering, Next Auth for authentication, and AWS S3 for image uploading and storage.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Technologies Used
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The following technologies and libraries were used in the development of this application:
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+- Front-end:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+  - React.js
+  - Next.js for server-side rendering
+  - Next Auth for authentication
+  - Axios for API calls
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Back-end:
 
-## Learn More
+  - Node.js for server-side logic
+  - Express.js for building RESTful APIs
+  - MongoDB for database management
 
-To learn more about Next.js, take a look at the following resources:
+- Image Uploading and Storage:
+  - AWS S3 for image uploading and storage
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Key Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- User Authentication: The app includes a robust user authentication system that allows users to sign up, login, and logout securely. It utilizes Next Auth for authentication logic, providing a secure and efficient authentication experience for users.
 
-## Deploy on Vercel
+- Image Uploading and Storage: Users can upload images and store them securely using AWS S3. The app provides a smooth and intuitive image uploading and storage experience for users.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- News Feed: Users can view and interact with a news feed that includes posts from other users. They can like, comment, and share posts, providing a collaborative social media experience.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- User-friendly UI: The app features a clean and intuitive user interface built using React, providing a seamless and visually appealing experience for users.
+
+## Deployment
+
+The application is deployed on a cloud hosting platform, Vercel, ensuring high availability and scalability. It is also integrated with a CI/CD pipeline for automated deployment and continuous integration.
+
+## Installation
+
+To run the application locally, follow these steps:
+
+1. Clone the repository from GitHub.
+2. Install dependencies using `npm`.
+3. Set up a MongoDB database and provide the connection URL in the back-end configuration.
+4. Set up an AWS S3 bucket and provide the access key and secret key in the back-end configuration.
+5. Run the front-end development server using `npm run dev`.
+6. Access the application in your web browser at `http://localhost:3000`.
