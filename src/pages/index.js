@@ -88,7 +88,9 @@ export default function Home() {
               viewBox="0 0 24 24"
               strokeWidth={1.5}
               stroke="currentColor"
-              className="w-6 h-6 ml-2">
+              className={
+                `w-6 h-6 ml-2 hover:text-twitterBlue ` + (searchMode && "text-twitterBlue")
+              }>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"

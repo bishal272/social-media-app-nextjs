@@ -25,14 +25,14 @@ export default function PostButtons({
   return (
     <div className="flex justify-between mr-12 text-twitterLightGray text-sm mt-1">
       <Link href={`/${username}/status/${id}`}>
-        <div className="flex">
+        <div className="flex hover:text-blue-400 hover:scale-105">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-5 h-5 mr-1">
+            className="w-5 h-5 mr-1 ">
             <path
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -42,14 +42,14 @@ export default function PostButtons({
           <span>{commentCount}</span>
         </div>
       </Link>
-      <button className="flex">
+      <button className="flex hover:text-green-400 hover:scale-105">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5 mr-1">
+          className="w-5 h-5 mr-1 ">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -59,7 +59,10 @@ export default function PostButtons({
         <span>0</span>
       </button>
       <button
-        className={(likedByMe ? "text-red-500 fill-red-500" : "") + " flex items-center"}
+        className={
+          (likedByMe ? "text-red-500 fill-red-500" : "") +
+          " flex items-center hover:text-red-500 hover:scale-105"
+        }
         onClick={toggleLike}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +70,7 @@ export default function PostButtons({
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5 mr-1 fill-inherit">
+          className="w-5 h-5 mr-1 fill-inherit ">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -84,14 +87,14 @@ export default function PostButtons({
           />
         </span>
       </button>
-      <button className="flex">
+      <button className="flex hover:text-orange-400 hover:scale-105">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-5 h-5 mr-1">
+          className="w-5 h-5 mr-1 ">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"

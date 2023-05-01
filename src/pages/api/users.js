@@ -10,7 +10,7 @@ export default async function handle(req, res) {
   if (req.method === "GET") {
     const { username, id } = req.query;
     const user = id ? await User.findById(id) : await User.findOne({ username });
-    const follow = await Follower.findOne({ source: session.user.id, destination: user._id });
+    const follow = await Follower.findOne({ source: session?.user.id, destination: user._id });
 
     res.json({ user, follow });
   }

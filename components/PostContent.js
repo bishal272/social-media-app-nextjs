@@ -42,14 +42,14 @@ export default function PostContent({
         <div className="pl-2 grow">
           <div className="">
             <Link href={"/" + author?.username}>
-              <span className="font-bold pr-1">{author?.name}</span>
+              <span className="font-bold pr-1 hover:underline">{author?.name}</span>
             </Link>
             {big && <br />}
             <Link href={"/" + author?.username}>
               <span className="text-twitterLightGray">@{author?.username}</span>
             </Link>
-            <span className="pl-1 text-twitterLightGray">
-              {createdAt && !big && <ReactTimeAgo date={createdAt} timeStyle="twitter" />}
+            <span className="pl-1 text-twitterLightGray text-sm">
+              . {createdAt && !big && <ReactTimeAgo date={createdAt} timeStyle="twitter" />}
             </span>
           </div>
           {!big && (

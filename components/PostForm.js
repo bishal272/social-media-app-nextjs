@@ -1,4 +1,5 @@
 import axios from "axios";
+import Link from "next/link";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import useUserInfo from "../hooks/useUserInfo";
@@ -25,9 +26,9 @@ const PostForm = ({ onPost, compact, parent }) => {
   return (
     <form action="" className="mx-5" onSubmit={handlePostSubmit}>
       <div className={(compact ? "items-center" : "") + " flex"}>
-        <div>
+        <Link href={`/${userInfo?.username}`}>
           <Avatar src={userInfo?.image} />
-        </div>
+        </Link>
         <div className="grow pl-2">
           <Upload onUploadFinish={(src) => setImages((prev) => [...prev, src])}>
             {({ isUploading }) => (
@@ -35,8 +36,8 @@ const PostForm = ({ onPost, compact, parent }) => {
                 {isUploading && "uploading"}
                 <textarea
                   className={
-                    (compact ? "h-10 mt-1" : "h-20") +
-                    " w-full p-2 bg-transparent text-twitterWhite"
+                    (compact ? "h-10 mt-1" : "h-14") +
+                    " w-full p-2 bg-transparent text-twitterWhite focus:outline-none resize-none"
                   }
                   placeholder={compact ? "Tweet Your Reply" : "What's Happening"}
                   value={text}
