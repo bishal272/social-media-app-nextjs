@@ -1,7 +1,7 @@
 import axios from "axios";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Layout from "../../components/Layout";
 import PostContent from "../../components/PostContent";
 import PostForm from "../../components/PostForm";
@@ -14,6 +14,7 @@ export default function Home() {
   const [idsLikedByMe, setIdsLikedByMe] = useState([]);
   const [searchMode, setSearchMode] = useState(false);
   const [searchItem, setSearchItem] = useState("");
+  const refSearch = useRef();
 
   const router = useRouter();
   const fetchAllPosts = () => {
@@ -33,6 +34,15 @@ export default function Home() {
     }
     fetchAllPosts();
   }, [userInfo]);
+  useEffect(() => {
+    const handler = (e) => {
+      if (refSearch && !refSearch.current.contains(e.target)) {
+        setSearchMode(false);
+      }
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
+  });
 
   if (userInfoStatus === "loading") {
     return "loading user info..";
@@ -47,11 +57,12 @@ export default function Home() {
   const handleEnter = async (e) => {
     if (e.key === "Enter") {
       const searchedUsers = await axios.get("/api/search?searchItem=" + searchItem);
+      setSearchItem("");
     }
   };
   return (
     <Layout>
-      <div className="flex p-4 items-center justify-between">
+      <div className="flex p-4 items-center justify-between" ref={refSearch}>
         <h1 className="text-lg font-bold ">Home</h1>
         <div className="flex items-center ">
           {searchMode && (
