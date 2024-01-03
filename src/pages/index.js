@@ -2,6 +2,7 @@ import axios from "axios";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
+import styles from "../styles/search.module.css";
 import Layout from "../../components/Layout";
 import PostContent from "../../components/PostContent";
 import PostForm from "../../components/PostForm";
@@ -45,7 +46,11 @@ export default function Home() {
   });
 
   if (userInfoStatus === "loading") {
-    return "loading user info..";
+    return (
+      <div className="flex justify-center items-center w-screen h-screen">
+        <img src="giphy.gif" alt="" className="h-72" />
+      </div>
+    );
   }
   if (userInfo && !userInfo?.username) {
     return <UsernameForm />;
@@ -65,7 +70,7 @@ export default function Home() {
       <div className="flex p-4 items-center justify-between" ref={refSearch}>
         <h1 className="text-lg font-bold ">Home</h1>
         <div className="flex items-center ">
-          {searchMode && (
+          {/* {searchMode && (
             <input
               type="text"
               className=" w-60 py-[2px]  px-4 rounded-2xl bg-twitterBorder"
@@ -97,7 +102,39 @@ export default function Home() {
                 d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
               />
             </svg>
-          </button>
+          </button>*/}
+          <div className={styles.container}>
+            <input
+              type="text"
+              name="text"
+              className={styles.input}
+              required=""
+              placeholder="Search Name/@username"
+              value={searchItem}
+              onChange={(e) => {
+                setSearchItem(e.target.value);
+              }}
+              onKeyDown={handleEnter}
+            />
+            <div class={styles.icon}>
+              <svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512">
+                <title>Search</title>
+                <path
+                  d="M221.09 64a157.09 157.09 0 10157.09 157.09A157.1 157.1 0 00221.09 64z"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-miterlimit="10"
+                  stroke-width="32"></path>
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="32"
+                  d="M338.29 338.29L448 448"></path>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
       <PostForm

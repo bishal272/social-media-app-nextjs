@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
 import useUserInfo from "../hooks/useUserInfo";
+import styles from "../src/styles/postform.module.css";
 import Avatar from "./Avatar";
 import Upload from "./Upload";
 
@@ -34,7 +35,7 @@ const PostForm = ({ onPost, compact, parent }) => {
             {({ isUploading }) => (
               <div>
                 {isUploading && "uploading"}
-                <textarea
+                {/* <textarea
                   className={
                     (compact ? "h-10 mt-1" : "h-14") +
                     " w-full p-2 bg-transparent text-twitterWhite focus:outline-none resize-none"
@@ -42,7 +43,19 @@ const PostForm = ({ onPost, compact, parent }) => {
                   placeholder={compact ? "Tweet Your Reply" : "What's Happening"}
                   value={text}
                   onChange={(e) => setText(e.target.value)}
-                />
+                /> */}
+                <div class={styles.form_control}>
+                  <input
+                    className={`${styles.input} ${styles.input_alt}`}
+                    placeholder={compact ? "Type something intelligent" : "What's Happening"}
+                    required=""
+                    type="text"
+                    value={text}
+                    onChange={(e) => setText(e.target.value)}
+                  />
+                  <span class={`${styles.input_border} ${styles.input_border_alt}`}></span>
+                </div>
+
                 <div className="flex -mx-2">
                   {images.length > 0 &&
                     images.map((image) => (
