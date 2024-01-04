@@ -2,12 +2,12 @@ import axios from "axios";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect, useRef, useState } from "react";
-import styles from "../styles/search.module.css";
 import Layout from "../../components/Layout";
 import PostContent from "../../components/PostContent";
 import PostForm from "../../components/PostForm";
 import UsernameForm from "../../components/UsernameForm";
 import useUserInfo from "../../hooks/useUserInfo";
+import styles from "../styles/search.module.css";
 
 export default function Home() {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
@@ -57,7 +57,7 @@ export default function Home() {
   }
   if (!userInfo) {
     router.push("/login");
-    return "no user info";
+    return;
   }
   const handleEnter = async (e) => {
     if (e.key === "Enter") {

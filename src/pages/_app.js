@@ -3,6 +3,7 @@ import TimeAgo from "javascript-time-ago";
 import en from "javascript-time-ago/locale/en.json";
 import { SessionProvider } from "next-auth/react";
 import Head from "next/head";
+
 TimeAgo.addDefaultLocale(en);
 
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
