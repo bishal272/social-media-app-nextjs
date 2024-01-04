@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Knewave } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
 import { RingLoader } from "react-spinners";
@@ -6,6 +7,10 @@ import useUserInfo from "../hooks/useUserInfo";
 import styles from "../src/styles/postform.module.css";
 import Avatar from "./Avatar";
 import Upload from "./Upload";
+const knewave = Knewave({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 const PostForm = ({ onPost, compact, parent }) => {
   const { userInfo, userInfoStatus } = useUserInfo();
@@ -75,13 +80,19 @@ const PostForm = ({ onPost, compact, parent }) => {
 
           {!compact && (
             <div className="text-right border-t border-twitterBorder pt-2 pb-2 ">
-              <button className="bg-twitterBlue text-white px-5 py-1 rounded-full">Tweet</button>
+              <button
+                className={`bg-twitterBlue text-white px-5 py-1 rounded-full ${knewave.className}`}>
+                Post
+              </button>
             </div>
           )}
         </div>
         {compact && (
           <div className="pl-2">
-            <button className="bg-twitterBlue text-white px-5 py-1 rounded-full">Tweet</button>
+            <button
+              className={`bg-twitterBlue text-white px-5 py-1 rounded-full ${knewave.className}`}>
+              Reply
+            </button>
           </div>
         )}
       </div>

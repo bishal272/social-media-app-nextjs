@@ -8,6 +8,11 @@ import PostForm from "../../components/PostForm";
 import UsernameForm from "../../components/UsernameForm";
 import useUserInfo from "../../hooks/useUserInfo";
 import styles from "../styles/search.module.css";
+import { Knewave } from "next/font/google";
+const knewave = Knewave({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
@@ -68,7 +73,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="flex p-4 items-center justify-between" ref={refSearch}>
-        <h1 className="text-lg font-bold ">Home</h1>
+        <h1 className={`text-lg font-bold ${knewave.className}`}>Ripple</h1>
         <div className="flex items-center ">
           {/* {searchMode && (
             <input

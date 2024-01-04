@@ -10,8 +10,8 @@ export default function App({ Component, pageProps: { session, ...pageProps } })
   return (
     <SessionProvider session={session}>
       <Head>
-        <title>Social Media App</title>
-        <link rel="icon" type="image/svg+xml" href="/twitter.svg" />
+        <title>Ripple</title>
+        <link rel="icon" type="image/svg+xml" href="/wave.svg" />
       </Head>
       <Component {...pageProps} />
     </SessionProvider>
