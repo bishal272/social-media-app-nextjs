@@ -151,7 +151,7 @@ export default function Home() {
           fetchAllPosts();
         }}
       />
-      <div className="mt-5">
+      <div className="mt-2">
         {posts.length > 0 &&
           posts.map((post) => (
             <div key={post._id} className="border-t border-twitterBorder p-5">

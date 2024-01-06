@@ -33,7 +33,7 @@ export default function PostButtons({
     alert("Post link copied to clipboard 👌");
   };
   return (
-    <div className="flex justify-between mr-12 text-twitterLightGray text-sm mt-1">
+    <div className="flex justify-between mr-12 text-twitterLightGray text-sm mt-3">
       <Link href={`/${username}/status/${id}`}>
         <div className="flex hover:text-blue-400 hover:scale-105">
           <svg

@@ -101,9 +101,9 @@ const PostForm = ({ onPost, compact, parent }) => {
           </Upload>
 
           {!compact && (
-            <div className="text-right border-t flex justify-between border-twitterBorder pt-2 pb-2 ">
+            <div className="text-right border-t flex justify-between border-twitterBorder pt-5 pb-1 ">
               <label
-                className={`bg-twitterBlue cursor-pointer text-white px-5 py-1 text-sm rounded-full ${knewave.className}`}>
+                className={`bg-twitterBlue cursor-pointer text-white px-3 py-1 text-sm rounded-full ${knewave.className}`}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -126,9 +126,10 @@ const PostForm = ({ onPost, compact, parent }) => {
                   onChange={uploadImage}
                 />
               </label>
+              {isUploading && <RingLoader size={29} color="#fff" />}
 
               <button
-                className={`bg-twitterBlue text-white px-5 py-1 rounded-full ${knewave.className}`}>
+                className={`bg-twitterBlue text-white px-3 py-1 text-sm rounded-full ${knewave.className}`}>
                 Post
               </button>
             </div>
