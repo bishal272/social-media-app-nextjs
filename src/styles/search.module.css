@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  --size-button: 40px;
+  --size-button: 32px;
   color: white;
 }
 
@@ -40,7 +40,7 @@
   height: var(--size-button);
   top: 0;
   left: 0;
-  padding: 8px;
+  padding: 5px;
   pointer-events: none;
 }
 

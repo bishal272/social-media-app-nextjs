@@ -30,8 +30,8 @@ export default function Home() {
     });
   };
   const logout = async () => {
-    setUserInfo(null);
     await signOut();
+    setUserInfo(null);
   };
 
   useEffect(() => {
@@ -72,9 +72,16 @@ export default function Home() {
   };
   return (
     <Layout>
-      <div className="flex p-4 items-center justify-between" ref={refSearch}>
+      <div className="flex p-6  items-center justify-between" ref={refSearch}>
         <h1 className={`text-lg font-bold ${knewave.className}`}>Ripple</h1>
-        <div className="flex items-center ">
+        <div className="flex items-center">
+          {userInfo && (
+            <button
+              onClick={logout}
+              className="bg-twitterWhite text-black text-sm px-3 py-1 mr-5 rounded-full">
+              Logout
+            </button>
+          )}
           {/* {searchMode && (
             <input
               type="text"
@@ -144,7 +151,7 @@ export default function Home() {
           fetchAllPosts();
         }}
       />
-      <div className="">
+      <div className="mt-5">
         {posts.length > 0 &&
           posts.map((post) => (
             <div key={post._id} className="border-t border-twitterBorder p-5">
@@ -160,13 +167,6 @@ export default function Home() {
             </div>
           ))}
       </div>
-      {userInfo && (
-        <div className="p-5 text-center border-twitterBorder border-t">
-          <button onClick={logout} className="bg-twitterWhite text-black px-5 py-2 rounded-full">
-            Logout
-          </button>
-        </div>
-      )}
     </Layout>
   );
 }
