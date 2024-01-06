@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export default function TopNavLink({ title = "Tweet", url = "/" }) {
+export default function TopNavLink({ title = "Home", url = "/" }) {
   return (
     <Link href={url}>
-      <div className="flex mb-2 cursor-pointer">
+      <div className="flex mb-6 cursor-pointer">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

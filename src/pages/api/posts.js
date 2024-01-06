@@ -26,13 +26,16 @@ export default async function handler(req, res) {
       if (!author && !parent) {
         const myFollows = await Follower.find({ source: session.user.id }).exec();
         const idsOfPeopleIFollow = myFollows.map((f) => f.destination);
+        //filters for followed accounts and userposts
         // searchFilter = { author: [...idsOfPeopleIFollow, session.user.id] };
+        //removes empty posts
+        searchFilter = { $or: [{ text: { $ne: "" } }, { images: { $ne: [] } }] };
       }
       if (author) {
-        searchFilter = { author };
+        searchFilter = { author, text: { $ne: "" } };
       }
       if (parent) {
-        searchFilter = { parent };
+        searchFilter = { parent, text: { $ne: "" } };
       }
 
       const posts = await Post.find(searchFilter)
@@ -41,6 +44,7 @@ export default async function handler(req, res) {
         .sort({ createdAt: -1 })
         .limit(20)
         .exec();
+
       // * get all the posts that are liked by me from the fetched 20 posts
       const postsLikedByMe = await Like.find({
         author: session?.user?.id,

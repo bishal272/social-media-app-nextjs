@@ -31,7 +31,7 @@ export default function PostPage() {
   return (
     <Layout>
       {!!post?._id && (
-        <div className="px-5 py-2">
+        <div className="px-8 py-6">
           <TopNavLink />
           {post.parent && (
             <div className="pb-1">
