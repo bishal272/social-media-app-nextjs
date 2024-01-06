@@ -19,7 +19,6 @@ const LoginPage = ({ providers }) => {
   if (data) {
     router.push("/");
   }
-  console.log({ data, status });
   return (
     <div className="flex items-center justify-center h-screen">
       <div className="flex items-center justify-center -mt-24">

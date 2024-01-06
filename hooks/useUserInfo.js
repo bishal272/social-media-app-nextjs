@@ -17,7 +17,6 @@ export default function useUserInfo() {
       response.json().then((json) => {
         setUserInfo(json.user);
         setUserInfoStatus("authenticated");
-        console.log(json);
       });
     });
   };

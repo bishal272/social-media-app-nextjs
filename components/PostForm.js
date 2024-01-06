@@ -16,19 +16,41 @@ const PostForm = ({ onPost, compact, parent }) => {
   const { userInfo, userInfoStatus } = useUserInfo();
   const [text, setText] = useState("");
   const [images, setImages] = useState([]);
+  const [isUploading, setIsUploading] = useState(false);
   if (userInfoStatus === "loading") {
     return "";
   }
   const handlePostSubmit = async (e) => {
     e.preventDefault();
-    await axios.post("/api/posts", { text, parent, images });
-    setText("");
-    setImages([]);
-    if (onPost) {
-      onPost();
+    if (!text) {
+      alert("No blank posting please 🙏");
+      return;
+    } else {
+      await axios.post("/api/posts", { text, parent, images });
+      setText("");
+      setImages([]);
+      if (onPost) {
+        onPost();
+      }
     }
   };
-
+  const uploadImage = async (ev) => {
+    const files = ev.target?.files;
+    if (files?.length > 0) {
+      setIsUploading(true);
+      const data = new FormData();
+      data.append("post", files[0]);
+      fetch("/api/upload", {
+        method: "POST",
+        body: data,
+      }).then(async (response) => {
+        const json = await response.json();
+        const src = json;
+        setImages((prev) => [...prev, src]);
+        setIsUploading(false);
+      });
+    }
+  };
   return (
     <form action="" className="mx-5" onSubmit={handlePostSubmit}>
       <div className={(compact ? "items-center" : "") + " flex"}>
@@ -49,7 +71,7 @@ const PostForm = ({ onPost, compact, parent }) => {
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 /> */}
-                <div class={styles.form_control}>
+                <div className={styles.form_control}>
                   <input
                     className={`${styles.input} ${styles.input_alt}`}
                     placeholder={compact ? "Type something intelligent" : "What's Happening"}
@@ -58,7 +80,7 @@ const PostForm = ({ onPost, compact, parent }) => {
                     value={text}
                     onChange={(e) => setText(e.target.value)}
                   />
-                  <span class={`${styles.input_border} ${styles.input_border_alt}`}></span>
+                  <span className={`${styles.input_border} ${styles.input_border_alt}`}></span>
                 </div>
 
                 <div className="flex -mx-2">
@@ -79,7 +101,32 @@ const PostForm = ({ onPost, compact, parent }) => {
           </Upload>
 
           {!compact && (
-            <div className="text-right border-t border-twitterBorder pt-2 pb-2 ">
+            <div className="text-right border-t flex justify-between border-twitterBorder pt-2 pb-2 ">
+              <label
+                className={`bg-twitterBlue cursor-pointer text-white px-5 py-1 text-sm rounded-full ${knewave.className}`}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="w-6 h-6">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="m2.25 15.75 5.159-5.159a2.25 2.25 0 0 1 3.182 0l5.159 5.159m-1.5-1.5 1.409-1.409a2.25 2.25 0 0 1 3.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5H3.75A1.5 1.5 0 0 0 2.25 6v12a1.5 1.5 0 0 0 1.5 1.5Zm10.5-11.25h.008v.008h-.008V8.25Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
+                  />
+                </svg>
+
+                <input
+                  type="file"
+                  id="actual-btn"
+                  hidden
+                  accept=".jpg,.jpeg,.png"
+                  onChange={uploadImage}
+                />
+              </label>
+
               <button
                 className={`bg-twitterBlue text-white px-5 py-1 rounded-full ${knewave.className}`}>
                 Post

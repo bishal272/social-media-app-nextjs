@@ -23,9 +23,7 @@ export default async function handler(req, res) {
     }
     const type = Object.keys(files)[0];
     const fileInfo = files[type][0];
-    console.log(fileInfo);
     const filename = fileInfo.path.split("\\").slice(-1)[0];
-    console.log(filename);
     await Client.send(
       new PutObjectCommand({
         Bucket: bucket,

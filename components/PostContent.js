@@ -49,7 +49,8 @@ export default function PostContent({
               <span className="text-twitterLightGray">@{author?.username}</span>
             </Link>
             <span className="pl-1 text-twitterLightGray text-sm">
-              . {createdAt && !big && <ReactTimeAgo date={createdAt} timeStyle="twitter" />}
+              .{" "}
+              {createdAt && !big && <ReactTimeAgo date={new Date(createdAt)} timeStyle="twitter" />}
             </span>
           </div>
           {!big && (
