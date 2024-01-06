@@ -78,7 +78,7 @@ export default function Home() {
           {userInfo && (
             <button
               onClick={logout}
-              className="bg-twitterWhite text-black text-sm px-3 py-1 mr-5 rounded-full">
+              className="bg-twitterDarkGray text-white text-sm px-3 py-1 mr-5 rounded-full">
               Logout
             </button>
           )}

@@ -22,6 +22,16 @@ export default function PostButtons({
       setLikedByMe(false);
     }
   };
+  const copyToClip = () => {
+    // For mobile devices
+    var text = `https://social-media-merkasin.vercel.app/${username}/status/${id}`;
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(text);
+
+    // Alert the copied text
+    alert("Post link copied to clipboard 👌");
+  };
   return (
     <div className="flex justify-between mr-12 text-twitterLightGray text-sm mt-1">
       <Link href={`/${username}/status/${id}`}>
@@ -87,7 +97,7 @@ export default function PostButtons({
           />
         </span>
       </button>
-      <button className="flex hover:text-orange-400 hover:scale-105">
+      <button className="flex hover:text-orange-400 hover:scale-105" onClick={copyToClip}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
