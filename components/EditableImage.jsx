@@ -16,16 +16,28 @@ export default function EditableImage({ type, src, onChange, className, editable
   if (!editable) {
     extraClasses = "";
   }
-  const updateImage = (files, ev) => {
+  const updateImage = async (files, ev) => {
     if (!editable) {
       return;
     }
-    ev.preventDefault();
     setIsFileNearBy(false);
     setIsFileOver(false);
     setIsUploading(true);
     const data = new FormData();
     data.append(type, files[0]);
+    putReqForImage(data);
+  };
+
+  const uploadImageByButton = async (ev) => {
+    const files = ev.target?.files;
+    if (files?.length > 0) {
+      setIsUploading(true);
+      const data = new FormData();
+      data.append(type, files[0]);
+      putReqForImage(data);
+    }
+  };
+  const putReqForImage = (data) => {
     fetch("/api/upload", {
       method: "POST",
       body: data,
@@ -35,6 +47,7 @@ export default function EditableImage({ type, src, onChange, className, editable
       setIsUploading(false);
     });
   };
+
   return (
     <FileDrop
       onDrop={updateImage}
@@ -59,22 +72,23 @@ export default function EditableImage({ type, src, onChange, className, editable
         <div className={"cover flex items-center overflow-hidden " + className}>
           {src && <img src={src} alt="" className="w-full" />}
           {editable && (
-            <button
-              className={`bg-twitterBlue text-white px-1  rounded-full absolute right-0 bottom-5`}>
+            <label
+              className={`bg-twitterBlue text-white px-1 py-1  cursor-pointer rounded-full absolute right-0 bottom-5`}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="w-5 h-5">
+                className="w-5 h-5 ">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
                 />
               </svg>
-            </button>
+              <input type="file" hidden onChange={uploadImageByButton} />
+            </label>
           )}
         </div>
       </div>

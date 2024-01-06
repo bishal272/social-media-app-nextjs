@@ -78,7 +78,7 @@ export default function UserPage() {
           </div>
 
           <Cover
-            editable={isMyProfile}
+            editable={isMyProfile && editMode}
             src={profileInfo.cover}
             onChange={(src) => {
               updateUserImage("cover", src);
@@ -90,7 +90,7 @@ export default function UserPage() {
                 <Avatar
                   big
                   src={profileInfo.image}
-                  editable={isMyProfile}
+                  editable={isMyProfile && editMode}
                   onChange={(src) => updateUserImage("image", src)}
                 />
               </div>
