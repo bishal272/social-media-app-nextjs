@@ -140,12 +140,13 @@ export default function UserPage() {
           <div className="px-5 mt-2">
             {!editMode && <h1 className="font-bold text-xl leading-6">{profileInfo.name}</h1>}
             {editMode && (
-              <div>
+              <div className="flex flex-col">
+                <label className="p-2">Name</label>
                 <input
                   type="text"
                   value={profileInfo.name}
                   onChange={(e) => setProfileInfo((prev) => ({ ...prev, name: e.target.value }))}
-                  className="bg-twitterBorder p-2 rounded-full mb-2"
+                  className="bg-twitterBorder p-2 rounded-lg mb-2"
                 />
               </div>
             )}
@@ -153,24 +154,26 @@ export default function UserPage() {
               <h2 className="text-twitterLightGray text-sm">@{profileInfo.username}</h2>
             )}
             {editMode && (
-              <div>
+              <div className="flex flex-col">
+                <label className="p-2">Username</label>
                 <input
                   type="text"
                   value={profileInfo.username}
                   onChange={(e) =>
                     setProfileInfo((prev) => ({ ...prev, username: e.target.value }))
                   }
-                  className="bg-twitterBorder p-2 rounded-full mb-2"
+                  className="bg-twitterBorder p-2 rounded-lg mb-2"
                 />
               </div>
             )}
             {!editMode && <div className="text-sm mt-2 mb-2">{profileInfo.bio}</div>}
             {editMode && (
               <div>
+                <label className="p-2">Describe Yourself</label>
                 <textarea
                   value={profileInfo.bio}
                   onChange={(e) => setProfileInfo((prev) => ({ ...prev, bio: e.target.value }))}
-                  className="bg-twitterBorder p-2 rounded-2xl mb-2 w-full block"
+                  className="bg-twitterBorder p-2 rounded-lg mt-2 mb-2 w-full block"
                 />
               </div>
             )}

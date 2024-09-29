@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <Layout>
       <div className="flex p-6  items-center justify-between" ref={refSearch}>
-        <h1 className={`text-lg font-bold ${knewave.className}`}>Ripple</h1>
+        <h1 className={`text-lg font-bold ${knewave.className} hidden max-md:flex`}>Ripple</h1>
         <div className="flex items-center">
           {userInfo && (
             <button
