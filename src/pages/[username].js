@@ -166,7 +166,12 @@ export default function UserPage() {
                 />
               </div>
             )}
-            {!editMode && <div className="text-sm mt-2 mb-2">{profileInfo.bio}</div>}
+            {!editMode && (
+              <div className="text-sm mt-2 mb-2">
+                <h1 className="font-bold text-lg">About Me</h1>
+                {profileInfo.bio}
+              </div>
+            )}
             {editMode && (
               <div>
                 <label className="p-2">Describe Yourself</label>

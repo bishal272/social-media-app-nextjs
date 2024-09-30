@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
 import useUserInfo from "../../hooks/useUserInfo";
+import TopNavLink from "../../components/TopNavLink";
 
 export default function People() {
   const { userInfo, setUserInfo, userInfoStatus } = useUserInfo();
@@ -20,6 +21,7 @@ export default function People() {
   }, [userInfo]);
   return (
     <Layout>
+      <TopNavLink />
       {console.log(users)}
       {users.length > 0 &&
         users.map((user) => (
