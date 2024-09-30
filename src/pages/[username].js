@@ -72,7 +72,7 @@ export default function UserPage() {
   return (
     <Layout>
       {!!profileInfo && (
-        <div>
+        <div className="">
           <div className="px-5 pt-2">
             <TopNavLink title={profileInfo.name} />
           </div>
@@ -84,7 +84,7 @@ export default function UserPage() {
               updateUserImage("cover", src);
             }}
           />
-          <div className="flex justify-between">
+          <div className="flex justify-between ">
             <div className="ml-5 relative">
               <div className="absolute -top-12 border-4 rounded-full border-black overflow-hidden">
                 <Avatar
@@ -137,7 +137,7 @@ export default function UserPage() {
               )}
             </div>
           </div>
-          <div className="px-5 mt-2">
+          <div className="px-5 mt-2 ">
             {!editMode && <h1 className="font-bold text-xl leading-6">{profileInfo.name}</h1>}
             {editMode && (
               <div className="flex flex-col">

@@ -7,7 +7,7 @@ export default function Cover({ src, onChange, editable }) {
       src={src}
       onChange={onChange}
       editable={editable}
-      className={"h-36"}
+      className={"h-36 "}
     />
   );
 }
